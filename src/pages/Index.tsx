@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import SectionDivider from "@/components/SectionDivider";
 import GalleryCard from "@/components/GalleryCard";
 import { ArrowDown, ArrowRight } from "lucide-react";
+import SineWave from "@/components/SineWave";
 
 const featuredWork = [
   {
@@ -70,6 +71,8 @@ const Index = () => {
               MOTION.
             </h1>
           </div>
+
+          <SineWave />
 
           <p
             className="font-body text-lg text-muted-foreground max-w-md mx-auto mb-12 animate-fade-in"
