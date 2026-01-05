@@ -55,22 +55,19 @@ const Index = () => {
               Multimedia Studio
             </span>
             <h1 className="bumper-text leading-none animate-fade-in" style={{ animationDelay: "0.1s" }}>
-              ART
+              ALWAYS
             </h1>
             <h1
               className="bumper-text leading-none text-primary animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
-              FOR
-            </h1>
-            <h1 className="bumper-text leading-none animate-fade-in" style={{ animationDelay: "0.3s" }}>
-              THE
+              IN
             </h1>
             <h1
               className="bumper-text leading-none glitch-text animate-fade-in"
-              style={{ animationDelay: "0.4s" }}
+              style={{ animationDelay: "0.3s" }}
             >
-              VOID
+              MOTION.
             </h1>
           </div>
 
