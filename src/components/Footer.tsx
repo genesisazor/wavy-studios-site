@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <Link to="/" className="font-display text-3xl tracking-tight">
-              [STUDIO]
+              [WAVY]
             </Link>
             <p className="font-body text-sm text-muted-foreground mt-4 max-w-xs">
               Multimedia art, prints, and weird things for your walls and wardrobe.
@@ -51,7 +51,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-12 pt-6 border-t border-muted flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-body text-xs text-muted-foreground">
-            © {new Date().getFullYear()} [STUDIO]. All rights reserved.
+            © {new Date().getFullYear()} [WAVY]. All rights reserved.
           </p>
           <p className="font-body text-xs text-muted-foreground">
             Made with controlled chaos

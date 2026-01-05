@@ -23,7 +23,7 @@ const About = () => {
             <div className="space-y-8">
               <div className="border-l-2 border-primary pl-6">
                 <p className="font-body text-xl leading-relaxed">
-                  [STUDIO] is a multimedia creative practice operating at the intersection of fine
+                  [WAVY] is a multimedia creative practice operating at the intersection of fine
                   art, commercial work, and late-night experiments gone too far.
                 </p>
               </div>

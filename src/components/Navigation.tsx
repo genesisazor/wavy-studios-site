@@ -21,7 +21,7 @@ const Navigation = () => {
             to="/" 
             className="font-display text-2xl tracking-tight hover:text-primary transition-colors duration-300"
           >
-            [STUDIO]
+            [WAVY]
           </Link>
 
           {/* Desktop Navigation */}
