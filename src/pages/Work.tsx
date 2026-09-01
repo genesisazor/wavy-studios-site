@@ -18,10 +18,6 @@ const citySlugify = (value: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
-const scrollToId = (id: string) => {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-};
-
 const workItems = [
   {
     id: 1,
@@ -194,10 +190,10 @@ const Work = () => {
                   const citySlug = citySlugify(gallery.city);
                   const cover = gallery.neighborhoods[0].images[0];
                   return (
-                    <button
+                    <a
                       key={gallery.city}
-                      onClick={() => scrollToId(citySlug)}
-                      className="group relative aspect-[16/9] overflow-hidden border border-foreground text-left"
+                      href={`#${citySlug}`}
+                      className="group relative aspect-[16/9] overflow-hidden border border-foreground block"
                     >
                       <img
                         src={cover}
@@ -213,7 +209,7 @@ const Work = () => {
                           {gallery.neighborhoods.map((n) => n.name).join(" · ")}
                         </p>
                       </div>
-                    </button>
+                    </a>
                   );
                 })}
               </div>
@@ -231,13 +227,13 @@ const Work = () => {
                     {/* Neighborhood quick links */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {gallery.neighborhoods.map((neighborhood) => (
-                        <button
+                        <a
                           key={neighborhood.name}
-                          onClick={() => scrollToId(citySlugify(`${gallery.city}-${neighborhood.name}`))}
+                          href={`#${citySlugify(`${gallery.city}-${neighborhood.name}`)}`}
                           className="px-4 py-2 font-body text-xs uppercase tracking-widest border border-foreground hover:bg-foreground hover:text-background transition-all duration-300"
                         >
                           {neighborhood.name}
-                        </button>
+                        </a>
                       ))}
                     </div>
 
