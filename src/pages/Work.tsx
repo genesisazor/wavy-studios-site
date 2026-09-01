@@ -176,19 +176,19 @@ const Work = () => {
 
       {isPhotography ? (
         <section className="px-6 pb-24">
-          <div className="container mx-auto space-y-20">
+          <div className="container mx-auto space-y-12">
             {photographyGalleries.map((gallery) => (
               <div key={gallery.city}>
-                <h2 className="font-display text-4xl md:text-6xl mb-10">{gallery.city}</h2>
+                <h2 className="font-display text-3xl md:text-5xl mb-6">{gallery.city}</h2>
 
-                <div className="space-y-14">
+                <div className="space-y-8">
                   {gallery.neighborhoods.map((neighborhood) => (
                     <div key={neighborhood.name}>
-                      <h3 className="font-body text-sm uppercase tracking-widest text-muted-foreground border-b border-foreground pb-3 mb-6">
+                      <h3 className="font-body text-xs uppercase tracking-widest text-muted-foreground border-b border-foreground pb-2 mb-4">
                         {neighborhood.name}
                       </h3>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
                         {neighborhood.images.map((image, index) => (
                           <div key={image} className="animate-fade-in">
                             <GalleryCard
