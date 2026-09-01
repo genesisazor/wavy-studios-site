@@ -11,7 +11,7 @@ const categories = ["All", "Photography", "Illustration", "Animation", "Zines", 
 const workItems = [
   {
     id: 1,
-    title: "Union Turnpike
+    title: "Union Turnpike",
     category: "Animation",
     image: unionTurnpike,
     isVideo: false,
