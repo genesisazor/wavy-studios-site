@@ -12,6 +12,16 @@ const categories = ["All", "Photography", "Illustration", "Animation", "Zines", 
 const wixImage = (id: string) =>
   `https://static.wixstatic.com/media/${id}~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/${id}~mv2.jpg`;
 
+const citySlugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+const scrollToId = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
 const workItems = [
   {
     id: 1,
@@ -175,37 +185,93 @@ const Work = () => {
       <SectionDivider />
 
       {isPhotography ? (
-        <section className="px-6 pb-24">
-          <div className="container mx-auto space-y-12">
-            {photographyGalleries.map((gallery) => (
-              <div key={gallery.city}>
-                <h2 className="font-display text-3xl md:text-5xl mb-6">{gallery.city}</h2>
-
-                <div className="space-y-8">
-                  {gallery.neighborhoods.map((neighborhood) => (
-                    <div key={neighborhood.name}>
-                      <h3 className="font-body text-xs uppercase tracking-widest text-muted-foreground border-b border-foreground pb-2 mb-4">
-                        {neighborhood.name}
-                      </h3>
-
-                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-                        {neighborhood.images.map((image, index) => (
-                          <div key={image} className="animate-fade-in">
-                            <GalleryCard
-                              title={`${neighborhood.name} No. ${index + 1}`}
-                              category="Photography"
-                              image={image}
-                            />
-                          </div>
-                        ))}
+        <>
+          {/* City Navigator */}
+          <section className="px-6 pb-16">
+            <div className="container mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {photographyGalleries.map((gallery) => {
+                  const citySlug = citySlugify(gallery.city);
+                  const cover = gallery.neighborhoods[0].images[0];
+                  return (
+                    <button
+                      key={gallery.city}
+                      onClick={() => scrollToId(citySlug)}
+                      className="group relative aspect-[16/9] overflow-hidden border border-foreground text-left"
+                    >
+                      <img
+                        src={cover}
+                        alt={gallery.city}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/45 group-hover:bg-black/55 transition-colors duration-300" />
+                      <div className="absolute inset-0 flex flex-col justify-end p-5">
+                        <h2 className="font-display text-3xl md:text-5xl text-white leading-none mb-2">
+                          {gallery.city}
+                        </h2>
+                        <p className="font-body text-xs uppercase tracking-widest text-white/80">
+                          {gallery.neighborhoods.map((n) => n.name).join(" · ")}
+                        </p>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    </button>
+                  );
+                })}
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
+          </section>
+
+          <section className="px-6 pb-24">
+            <div className="container mx-auto space-y-12">
+              {photographyGalleries.map((gallery) => {
+                const citySlug = citySlugify(gallery.city);
+                return (
+                  <div key={gallery.city} id={citySlug} className="scroll-mt-24">
+                    <h2 className="font-display text-3xl md:text-5xl mb-4">{gallery.city}</h2>
+
+                    {/* Neighborhood quick links */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {gallery.neighborhoods.map((neighborhood) => (
+                        <button
+                          key={neighborhood.name}
+                          onClick={() => scrollToId(citySlugify(`${gallery.city}-${neighborhood.name}`))}
+                          className="px-4 py-2 font-body text-xs uppercase tracking-widest border border-foreground hover:bg-foreground hover:text-background transition-all duration-300"
+                        >
+                          {neighborhood.name}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="space-y-8">
+                      {gallery.neighborhoods.map((neighborhood) => (
+                        <div
+                          key={neighborhood.name}
+                          id={citySlugify(`${gallery.city}-${neighborhood.name}`)}
+                          className="scroll-mt-24"
+                        >
+                          <h3 className="font-body text-xs uppercase tracking-widest text-muted-foreground border-b border-foreground pb-2 mb-4">
+                            {neighborhood.name}
+                          </h3>
+
+                          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                            {neighborhood.images.map((image, index) => (
+                              <div key={image} className="animate-fade-in">
+                                <GalleryCard
+                                  title={`${neighborhood.name} No. ${index + 1}`}
+                                  category="Photography"
+                                  image={image}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        </>
       ) : (
         <section className="px-6 pb-24">
           <div className="container mx-auto">
