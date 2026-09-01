@@ -9,6 +9,9 @@ import unionTurnpike from "@/assets/work/UnionTurnpike.gif";
 
 const categories = ["All", "Photography", "Illustration", "Animation", "Zines", "Cartoons"];
 
+const wixImage = (id: string) =>
+  `https://static.wixstatic.com/media/${id}~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/${id}~mv2.jpg`;
+
 const workItems = [
   {
     id: 1,
@@ -18,22 +21,10 @@ const workItems = [
     isVideo: false,
   },
   {
-    id: 2,
-    title: "Void Portrait No. 3",
-    category: "Photography",
-    image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=600&fit=crop",
-  },
-  {
     id: 3,
     title: "Don't Look Down",
     category: "Illustration",
     image: dontLookDown,
-  },
-  {
-    id: 4,
-    title: "Neon Decay",
-    category: "Photography",
-    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=600&fit=crop",
   },
   {
     id: 5,
@@ -60,21 +51,91 @@ const workItems = [
     image: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=600&h=600&fit=crop",
     isVideo: false,
   },
+];
+
+const photographyGalleries = [
   {
-    id: 9,
-    title: "Fragments",
-    category: "Photography",
-    image: "https://images.unsplash.com/photo-1506792006437-256b665541e2?w=600&h=600&fit=crop",
+    city: "New York City",
+    neighborhoods: [
+      {
+        name: "Manhattan",
+        images: [
+          "0286ff_d00fe689f36e4b219e3928a468b3184a",
+          "0286ff_9e9dfddb183b413d9279b0284800968d",
+          "0286ff_1eb1793d7b974b7094598ba8becb0a23",
+          "0286ff_88eabc4974b742f7a78e684704991ad5",
+          "0286ff_f9248d1911b941a3a2d26de1c3fdc4c0",
+          "0286ff_03a69bd7bf874bd48b8f949197895ce8",
+          "0286ff_d93433b751e94ac8b21386601f81b4ed",
+          "0286ff_81c067acd33547738aad8485038f712e",
+          "0286ff_f12bff0152404317b0c90dd65be889ad",
+        ].map(wixImage),
+      },
+      {
+        name: "Brooklyn",
+        images: [
+          "0286ff_b083ab969fe94c86abf27cc6b84230b7",
+          "0286ff_38c0c734e849472bb78a8a2ebcd5a00b",
+          "0286ff_d8410ccd3c41497684048fe75d109897",
+          "0286ff_144578b81a814f87bd1b0adf9a24e95a",
+          "0286ff_963836d277014fbfa97884d5805eb65e",
+          "0286ff_63ac2073cf334945b218e5367e0aee5c",
+        ].map(wixImage),
+      },
+    ],
+  },
+  {
+    city: "Atlanta",
+    neighborhoods: [
+      {
+        name: "The West End",
+        images: [
+          "0286ff_80819139e004419c97dc73e0d258d852",
+          "0286ff_fbbceba16a80408dac6b394db69fd024",
+          "0286ff_cfbfb68e4adf4809b0a0d50ca22c164a",
+          "0286ff_be992cf12925444b9e5daef0617d15cc",
+          "0286ff_dca9f744cadf41caab8bb38529738712",
+          "0286ff_469ebd2e6d9244e4b12b759e5de7433a",
+        ].map(wixImage),
+      },
+      {
+        name: "Inman Park",
+        images: [
+          "0286ff_c17cdce59883480fa5558b21497a99c1",
+          "0286ff_806184dbaa4c4e788f51b499694278d2",
+          "0286ff_eab8bd4ef62040f68787b40cae3ce91e",
+          "0286ff_bbfb78cd9b154bc3b7e2401c77fb59dc",
+          "0286ff_1a408e1b23034c0898620b8b316a62c3",
+        ].map(wixImage),
+      },
+      {
+        name: "Downtown Atlanta",
+        images: [
+          "0286ff_d7642de5f77b4a16b037ace97e616824",
+          "0286ff_4bc83db94a5449a28cf6996b09d8dbcb",
+          "0286ff_c991a392db4748e99edf4e1e86610b10",
+          "0286ff_a0314afa0ecd4ae2acb6a4c58dd42e9f",
+          "0286ff_4ac6fd371145415e99c241c19ee1eb49",
+          "0286ff_b52acbf3d6044c869499132a4bd5e10e",
+        ].map(wixImage),
+      },
+    ],
   },
 ];
 
 const Work = () => {
-  const [searchParams] = useSearchParams(); const categoryParam = searchParams.get("category"); const initialCategory = categories.find((c) => c.toLowerCase() === categoryParam?.toLowerCase()) || "All"; const [activeCategory, setActiveCategory] = useState(initialCategory);
+  const [searchParams] = useSearchParams();
+  const categoryParam = searchParams.get("category");
+  const initialCategory =
+    categories.find((c) => c.toLowerCase() === categoryParam?.toLowerCase()) || "All";
+  const [activeCategory, setActiveCategory] = useState(initialCategory);
 
   const filteredWork =
     activeCategory === "All"
       ? workItems
       : workItems.filter((item) => item.category === activeCategory);
+
+  const isPhotography = activeCategory === "Photography";
 
   return (
     <div className="min-h-screen bg-background">
@@ -113,35 +174,68 @@ const Work = () => {
 
       <SectionDivider />
 
-      {/* Gallery Grid */}
-      <section className="px-6 pb-24">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredWork.map((work, index) => (
-              <div
-                key={work.id}
-                className="animate-fade-in"
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                <GalleryCard
-                  title={work.title}
-                  category={work.category}
-                  image={work.image}
-                  isVideo={work.isVideo}
-                />
+      {isPhotography ? (
+        <section className="px-6 pb-24">
+          <div className="container mx-auto space-y-20">
+            {photographyGalleries.map((gallery) => (
+              <div key={gallery.city}>
+                <h2 className="font-display text-4xl md:text-6xl mb-10">{gallery.city}</h2>
+
+                <div className="space-y-14">
+                  {gallery.neighborhoods.map((neighborhood) => (
+                    <div key={neighborhood.name}>
+                      <h3 className="font-body text-sm uppercase tracking-widest text-muted-foreground border-b border-foreground pb-3 mb-6">
+                        {neighborhood.name}
+                      </h3>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {neighborhood.images.map((image, index) => (
+                          <div key={image} className="animate-fade-in">
+                            <GalleryCard
+                              title={`${neighborhood.name} No. ${index + 1}`}
+                              category="Photography"
+                              image={image}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
-
-          {filteredWork.length === 0 && (
-            <div className="text-center py-24">
-              <p className="font-display text-2xl text-muted-foreground">
-                No work found in this category.
-              </p>
+        </section>
+      ) : (
+        <section className="px-6 pb-24">
+          <div className="container mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredWork.map((work, index) => (
+                <div
+                  key={work.id}
+                  className="animate-fade-in"
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
+                  <GalleryCard
+                    title={work.title}
+                    category={work.category}
+                    image={work.image}
+                    isVideo={work.isVideo}
+                  />
+                </div>
+              ))}
             </div>
-          )}
-        </div>
-      </section>
+
+            {filteredWork.length === 0 && (
+              <div className="text-center py-24">
+                <p className="font-display text-2xl text-muted-foreground">
+                  No work found in this category.
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       <Footer />
     </div>
