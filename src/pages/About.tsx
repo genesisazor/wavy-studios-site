@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import aboutPortrait from "@/assets/about/AboutHero.jpg";
 
 const About = () => {
   return (
@@ -48,7 +49,7 @@ const About = () => {
               </div>
 
               <div className="pt-8">
-                <a href="mailto:hello@studio.com">
+                <a href="mailto:gazor.art@gmail.com">
                   <Button variant="bumper" size="lg">
                     Get in Touch
                     <ArrowRight className="ml-2" size={18} />
@@ -61,8 +62,8 @@ const About = () => {
             <div className="relative">
               <div className="aspect-square border border-foreground overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=800&fit=crop"
-                  alt="Studio portrait"
+                  src={aboutPortrait}
+                  alt="Genesis Azor"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 />
               </div>
