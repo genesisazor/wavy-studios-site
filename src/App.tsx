@@ -16,7 +16,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename="/blue-sky-bumpers">
+      <BrowserRouter basename="/wavy-studios-site">
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/work" element={<Work />} />
