@@ -103,12 +103,7 @@ const Index = () => {
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
           <ArrowDown className="text-muted-foreground" size={24} />
         </div>
-
-        {/* Decorative Elements */}
-        <div className="absolute top-1/4 left-8 w-px h-32 bg-primary opacity-50" />
-        <div className="absolute top-1/3 right-8 w-32 h-px bg-primary opacity-50" />
-        <div className="absolute bottom-1/4 left-16 w-4 h-4 border border-primary opacity-50" />
-      </section>
+</section>
 
       {/* Featured Work Section */}
       <section className="py-24 px-6">
