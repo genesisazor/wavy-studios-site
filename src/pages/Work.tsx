@@ -3,15 +3,17 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import GalleryCard from "@/components/GalleryCard";
 import SectionDivider from "@/components/SectionDivider";
+import dontLookDown from "@/assets/work/DontLookDown.jpg";
+import unionTurnpike from "@/assets/work/UnionTurnpike.gif";
 
 const categories = ["All", "Photography", "Illustration", "Animation", "Zines", "Cartoons"];
 
 const workItems = [
   {
     id: 1,
-    title: "Midnight Static",
+    title: "Union Turnpike
     category: "Animation",
-    image: "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=600&h=600&fit=crop",
+    image: unionTurnpike,
     isVideo: false,
   },
   {
@@ -22,9 +24,9 @@ const workItems = [
   },
   {
     id: 3,
-    title: "Electric Dreams",
+    title: "Don't Look Down",
     category: "Illustration",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=600&fit=crop",
+    image: dontLookDown,
   },
   {
     id: 4,
