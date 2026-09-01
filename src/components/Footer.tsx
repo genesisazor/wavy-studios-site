@@ -42,7 +42,7 @@ const Footer = () => {
             <a href="#" className="font-body text-sm hover:text-primary transition-colors">
               Twitter
             </a>
-            <a href="mailto:hello@studio.com" className="font-body text-sm hover:text-primary transition-colors">
+            <a href="mailto:gazor.art@gmail.com" className="font-body text-sm hover:text-primary transition-colors">
               Email
             </a>
           </div>
