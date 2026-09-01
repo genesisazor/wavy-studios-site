@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import GalleryCard from "@/components/GalleryCard";
@@ -68,7 +69,7 @@ const workItems = [
 ];
 
 const Work = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [searchParams] = useSearchParams(); const categoryParam = searchParams.get("category"); const initialCategory = categories.find((c) => c.toLowerCase() === categoryParam?.toLowerCase()) || "All"; const [activeCategory, setActiveCategory] = useState(initialCategory);
 
   const filteredWork =
     activeCategory === "All"
