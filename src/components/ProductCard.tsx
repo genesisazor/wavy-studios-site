@@ -6,9 +6,10 @@ interface ProductCardProps {
   price: number;
   image: string;
   category: string;
+  onAddToCart?: () => void;
 }
 
-const ProductCard = ({ name, price, image, category }: ProductCardProps) => {
+const ProductCard = ({ name, price, image, category, onAddToCart }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -47,7 +48,7 @@ const ProductCard = ({ name, price, image, category }: ProductCardProps) => {
           isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
-        <Button variant="bumper" size="sm" className="w-full">
+        <Button variant="bumper" size="sm" className="w-full" onClick={onAddToCart}>
           Add to Cart
         </Button>
       </div>
