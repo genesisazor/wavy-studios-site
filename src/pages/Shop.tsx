@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import SectionDivider from "@/components/SectionDivider";
+import ComingSoonDialog from "@/components/ComingSoonDialog";
 
 const categories = ["All", "Apparel", "Prints", "Stickers", "Collectibles"];
 
@@ -74,6 +75,7 @@ const products = [
 
 const Shop = () => {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [comingSoonOpen, setComingSoonOpen] = useState(false);
 
   const filteredProducts =
     activeCategory === "All"
@@ -133,6 +135,7 @@ const Shop = () => {
                   price={product.price}
                   image={product.image}
                   category={product.category}
+                  onAddToCart={() => setComingSoonOpen(true)}
                 />
               </div>
             ))}
@@ -169,6 +172,8 @@ const Shop = () => {
       </section>
 
       <Footer />
+
+      <ComingSoonDialog open={comingSoonOpen} onOpenChange={setComingSoonOpen} />
     </div>
   );
 };
